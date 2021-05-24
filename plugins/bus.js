@@ -1,2 +1,8 @@
 import Vue from 'vue'
-export const EventBus = new Vue();
+const eventBus = {}
+
+eventBus.install = function (Vue) {
+  Vue.prototype.$bus = new Vue();
+}
+
+Vue.use(eventBus);
