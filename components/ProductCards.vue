@@ -1,5 +1,5 @@
 <template>
-<div class="container" @products="$fetch">
+<div class="container">
   <div class="product-wrapper">
       <div v-for="items in products" :key="items.id">
         <div class="product-card">
@@ -34,20 +34,25 @@
 <script>
 
   export default {
-
-    data () {
+    data() {
       return {
         products: []
       }
     },
+    // computed: {
+    //   async products() {
+    //     console.log('product state', this.$store.state.products)
+    //     return this.$store.state.products
+    //   },
+    // },
+
     async fetch () {
 
       const getProducts = await fetch('https://www.ellos.se/api/articles?path=barn%2Fbabyklader-stl-50-92').then(res => res.json());
       const { getProductListPage } = getProducts.data
+      this.text = getProductListPage.category.pageDescription;
       this.products = getProductListPage.articles;
-      this.$emit('products', this.products)
-    }
-
+    },
   }
 </script>
 
@@ -55,7 +60,7 @@
 
   .container {
     display: flex;
-    justify-content: b;
+    justify-content: baseline;
     /* width: 100%; */
     max-width: 85%;
     margin: 0 auto;
@@ -67,6 +72,12 @@
     justify-content: center;
   }
 
+  .product-wrapper::after {
+    content: "";
+    flex: auto;
+    max-width: 550px;
+  }
+
   .product-card {
     display: flex;
     flex-direction: column;
@@ -74,6 +85,14 @@
     background: #FFF;
     padding: .3rem;
     height: 450px;
+    transform: scale(2) .5s;
+  }
+
+  .product-card:hover {
+    position: absolute;
+    align-items: flex-start;
+    transform: scale(2) translateY(25%);
+    z-index: 5;
   }
 
   .product-image {
@@ -82,7 +101,7 @@
 
   .card-decsripton {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     background: #FFF;
     width: 100%;
@@ -154,8 +173,12 @@
   @media (max-width: 480px) {
     .product-wrapper {
       display: grid;
+      justify-content: center;
       grid-template-columns: repeat(2, 1fr);
-
+    }
+    .items-image {
+      max-height: 350px;
+      max-width: 200px;
     }
   }
 

@@ -24,7 +24,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/bus'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,6 +40,13 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/proxy'
   ],
+  axios: {
+    proxy: true
+  },
+
+  proxy: {
+    '/api/': { target: 'https://www.ellos.se/api/articles?path=barn%2Fbabyklader-stl-50-92', pathRewrite: { '^/api/': '' }, changeOrigin: true }
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

@@ -3,28 +3,23 @@
     <div class="overlay"></div>
         <h1>ellos</h1>
         <h2>{{text}}</h2>
-        <nuxt-link to="/commerce" class="btn">Shoppa loss!</nuxt-link>
+        <span class="animation">-></span>
+        <a href="/commerce" class="btn">Shoppa loss!</a>
+        <!-- <a nuxt-link to="/commerce" >Shoppa loss!</a> -->
   </header>
 </template>
 
 <script>
-import plushAnimals from "static/hang-out-1521445_1920.jpg";
-export default {
-  data() {
-    return {
-      image: plushAnimals,
-      text: '',
-      products: []
-    }
-  },
-    async fetch () {
+  import plushAnimals from "static/hang-out-1521445_1920.jpg";
 
-      const getProducts = await fetch('https://www.ellos.se/api/articles?path=barn%2Fbabyklader-stl-50-92').then(res => res.json());
-      const { getProductListPage } = getProducts.data
-      this.text = getProductListPage.category.pageDescription;
-      this.products = getProductListPage.articles;
+  export default {
+    data() {
+      return {
+        image: plushAnimals,
+        text: 'Shoppa babykläder hos Ellos till bra priser. Här hittar du allt för din baby i storlekar 50-92. Handla babykläder enkelt online hos ellos.se',
+      }
     }
-}
+  }
 </script>
 
 <style>
@@ -35,7 +30,7 @@ header {
   align-items: center;
   height: 100vh;
   position: relative;
-  background: no-repeat center center cover;
+  background: no-repeat center/center cover;
   position: relative;
 }
 
@@ -72,26 +67,51 @@ h2 {
 
 .btn {
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -60%);
+  transform: translate(-50%, -50%);
   text-align: center;
-  background: #FFF;
+  /* background: #FFF; */
   font-size: 1.2rem;
   font-weight: bold;
-  color: black;
+  color: #fff;
   width: 250px;
   padding: 1rem 2rem;
   text-decoration: none;
-  border-radius: 50px;
-  transition: .5s;
+  border: 3px solid #fff;
+  /* border-radius: 50px; */
+  transition: .3s;
   margin-top: 1rem;
 }
 
 .btn:hover {
-  background: rgb(0, 92, 0);
-  color: #FFF;
+  border: none;
+  background: #359E02;
+  color: #F94C73
 }
+
+.btn:active {
+  transform: scale(0.9, 0.9) translateX(-50%);
+  size: 90%;
+}
+
+.animation {
+  position: absolute;
+  top: 54%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  animation: move 4s infinite;
+  color: #fff;
+  font-size: 1rem;
+}
+
+@keyframes move {
+  0% {
+    background-color: red;
+  }
+
+}
+
 
 @media (max-height: 480px) {
   h2 {

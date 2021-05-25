@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Products :products="products"/>
+  <Products />
   </div>
 </template>
 
@@ -11,7 +11,6 @@ import Products from '../components/ProductCards'
     components: {
       Products
     },
-    props: ['products']
-
   }
+
 </script>
