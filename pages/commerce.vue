@@ -1,16 +1,6 @@
 <template>
-<div>
-  <Products />
+  <div>
+    <NavBar />
+    <ProductList />
   </div>
 </template>
-
-<script>
-import Products from '../components/ProductCards'
-
-  export default {
-    components: {
-      Products
-    },
-  }
-
-</script>

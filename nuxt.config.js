@@ -37,16 +37,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/proxy'
+    // '@nuxtjs/fontawesome'
   ],
-  axios: {
-    proxy: true
-  },
 
-  proxy: {
-    '/api/': { target: 'https://www.ellos.se/api/articles?path=barn%2Fbabyklader-stl-50-92', pathRewrite: { '^/api/': '' }, changeOrigin: true }
-  },
+  // fontawesome: {
+  //   component: 'fa',
+  //   icons: {
+  //     solid: true,
+  //     brand: true
+  //   },
+  // },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
   }

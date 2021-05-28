@@ -1,21 +1,21 @@
-# ellos_test
+# ellos test
 
-## Build Setup
+#### Daniel Malmgren de Oliveira
+
+## Sätta igång programmet
 
 ```bash
-# install dependencies
+# gå till mappen i terminal / cmd / PowerShell
+
+# installera dependencies
 $ npm install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
+# sätt igång programmet:
 $ npm run start
 
-# generate static project
-$ npm run generate
-```
+# har även deployat:
+$ http://ellos-test.surge.sh/
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
-# ellos_test
+
+
+

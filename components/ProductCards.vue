@@ -1,102 +1,54 @@
 <template>
-<div class="container">
-  <div class="product-wrapper">
-      <div v-for="items in products" :key="items.id">
-        <div class="product-card">
-          <div class="product-image">
-            <img class="items-image" :src="`https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=${items.imageFront}`" alt="">
-            <div class="labels">
-              <ul class="labels-style" v-for="(labels, i) in items.labels" :key="labels[i]">
-                <li><img :src="labels" alt=""></li>
-              </ul>
-            </div>
-          </div>
-          <div class="card-description">
-            <h2 class="items-info"><span class="items-subbrand">{{items.subBrand}}</span>{{items.name}}</h2>
-            <div v-if="items.currentPriceFmt < items.originalPriceFmt" class="items-price">
-              <span class="items-current-price">{{items.currentPriceFmt}} SEK</span>
-              <span class="items-original-price">{{items.originalPriceFmt}} SEK</span>
-              <span  class="items-discount">{{items.priceDiscount}}%</span>
-            </div>
-            <div v-if="items.currentPriceFmt === items.originalPriceFmt" class="items-price">
-              <span class="items-no-discount">{{items.currentPriceFmt}} SEK</span>
-            </div>
-            <div v-else-if="!items.currentPriceFmt || !items.originalPriceFmt || !items.priceDiscount">
-              <span class="items-no-price">Item out-of-stock</span>
-            </div>
-          </div>
-        </div>
+  <div class="product-card">
+    <div class="product-image">
+      <img class="items-image" :src="`https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$el$&n=${product.imageFront}`" alt="">
+      <div class="labels">
+        <ul class="labels-style" v-for="(labels, i) in product.labels" :key="labels[i]">
+          <li><img :src="labels" alt=""></li>
+        </ul>
       </div>
     </div>
-</div>
+    <div class="card-description">
+      <h2 class="items-info"><span class="items-subbrand">{{product.subBrand}}</span>{{product.name}}</h2>
+      <div v-if="product.currentPriceFmt < product.originalPriceFmt" class="items-price">
+        <span class="items-current-price">{{product.currentPriceFmt}} SEK</span>
+        <span class="items-original-price">{{product.originalPriceFmt}} SEK</span>
+        <span  class="items-discount">{{product.priceDiscount}}%</span>
+      </div>
+      <div v-if="product.currentPriceFmt === product.originalPriceFmt" class="items-price">
+        <span class="items-no-discount">{{product.currentPriceFmt}} SEK</span>
+      </div>
+      <div v-else-if="!product.currentPriceFmt || !product.originalPriceFmt || !product.priceDiscount">
+        <span class="items-no-price">Item out-of-stock</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 
-  export default {
-    data() {
-      return {
-        products: []
-      }
-    },
-    // computed: {
-    //   async products() {
-    //     console.log('product state', this.$store.state.products)
-    //     return this.$store.state.products
-    //   },
-    // },
-
-    async fetch () {
-
-      const getProducts = await fetch('https://www.ellos.se/api/articles?path=barn%2Fbabyklader-stl-50-92').then(res => res.json());
-      const { getProductListPage } = getProducts.data
-      this.text = getProductListPage.category.pageDescription;
-      this.products = getProductListPage.articles;
-    },
-  }
+export default {
+  props: ['product']
+}
 </script>
 
 <style scoped>
-
-  .container {
-    display: flex;
-    justify-content: baseline;
-    /* width: 100%; */
-    max-width: 85%;
-    margin: 0 auto;
-  }
-
-  .product-wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-  }
-
-  .product-wrapper::after {
-    content: "";
-    flex: auto;
-    max-width: 550px;
-  }
-
   .product-card {
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
     border: 8px #FFF solid;
     background: #FFF;
     padding: .3rem;
-    height: 450px;
-    transform: scale(2) .5s;
-  }
-
-  .product-card:hover {
-    position: absolute;
-    align-items: flex-start;
-    transform: scale(2) translateY(25%);
-    z-index: 5;
+    max-height: 450px;
+    transition: all 0.2s ease;
   }
 
   .product-image {
     position: relative;
+    max-height: 400px;
+    max-width: 250px;
+
   }
 
   .card-decsripton {
@@ -110,10 +62,14 @@
   }
 
   .items-image {
-    max-height: 400px;
-    max-width: 250px;
     transition: transform .2s;
+    width: 100%;
     position: relative;
+  }
+  .product-card:hover  .items-image{
+    transform: scale(1.7) translateY(20%);
+    z-index: 5;
+    transition: all 0.2s ease;
   }
 
  .labels {
@@ -171,15 +127,11 @@
   }
 
   @media (max-width: 480px) {
-    .product-wrapper {
-      display: grid;
-      justify-content: center;
-      grid-template-columns: repeat(2, 1fr);
-    }
     .items-image {
       max-height: 350px;
       max-width: 200px;
     }
   }
+
 
 </style>

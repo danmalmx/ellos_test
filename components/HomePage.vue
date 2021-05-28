@@ -1,11 +1,10 @@
 <template>
-  <header :style="{backgroundImage: `url(${image})`}">
+  <header class="image" :style="{backgroundImage: `url(${image})`}">
     <div class="overlay"></div>
         <h1>ellos</h1>
         <h2>{{text}}</h2>
-        <span class="animation">-></span>
+        <span class="pointing-arrow"><i class="fas fa-arrow-up 3x"></i></span>
         <a href="/commerce" class="btn">Shoppa loss!</a>
-        <!-- <a nuxt-link to="/commerce" >Shoppa loss!</a> -->
   </header>
 </template>
 
@@ -23,15 +22,18 @@
 </script>
 
 <style>
+
 header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
-  position: relative;
-  background: no-repeat center/center cover;
-  position: relative;
+  min-width: 10%;
+  min-height: 100vh;
+  top: 0;
+  left: 0;
+  background: no-repeat cover;
+  background-position: center cdenter;
 }
 
 .overlay {
@@ -58,20 +60,19 @@ h2 {
   position: absolute;
   color: #fff;
   width: 45%;
-  top: 35%;
+  top: 30%;
   left: 50%;
-  transform: translate(-50%, -35%);
+  transform: translate(-50%, -30%);
   text-align: center;
 
 }
 
 .btn {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
   text-align: center;
-  /* background: #FFF; */
   font-size: 1.2rem;
   font-weight: bold;
   color: #fff;
@@ -79,49 +80,81 @@ h2 {
   padding: 1rem 2rem;
   text-decoration: none;
   border: 3px solid #fff;
-  /* border-radius: 50px; */
-  transition: .3s;
   margin-top: 1rem;
 }
 
 .btn:hover {
-  border: none;
-  background: #359E02;
-  color: #F94C73
+  transition: all .3s ease-in-out;
+  background: #000;
+  color: #FFF;
 }
 
 .btn:active {
-  transform: scale(0.9, 0.9) translateX(-50%);
-  size: 90%;
+  background: #EEE;
 }
 
-.animation {
+.pointing-arrow {
   position: absolute;
-  top: 54%;
-  left: 40%;
-  transform: translate(-50%, -50%);
-  animation: move 4s infinite;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -53%);
+  animation: move 1s infinite;
   color: #fff;
   font-size: 1rem;
 }
 
 @keyframes move {
   0% {
-    background-color: red;
+    top: 53%;
   }
+  25% {
+    top: 52.25%;
+  }
+  50% {
+    top: 52.5%;
+  }
+  75% {
+    top: 52.75%;
+  }
+  100% {
+    top: 53%;  }
 
 }
 
-
-@media (max-height: 480px) {
+@media (max-width: 480px) {
+  header {
+    left: 20%;
+  }
   h2 {
-    position: absolute;
-    width: 60%
+    top: 40%;
+    width: 70%
   }
 
   .btn {
-    position: absolute;
-    top: 60%;
+    top: 78%;
+  }
+
+  .pointing-arrow {
+    top: 78%;
+
+  }
+
+  @keyframes move {
+    0% {
+      top: 89%;
+    }
+    25% {
+      top: 88.25%;
+    }
+    50% {
+      top: 88.5%;
+    }
+    75% {
+      top: 88.75%;
+    }
+    100% {
+      top: 89%;
+    }
   }
 }
 
