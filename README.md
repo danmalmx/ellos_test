@@ -2,20 +2,12 @@
 
 #### Daniel Malmgren de Oliveira
 
-## Sätta igång programmet
+## Sätt upp programmet
+- gå till mappen i terminal / cmd / PowerShell
+- installera dependencies med: npm install
 
-```bash
-# gå till mappen i terminal / cmd / PowerShell
+## Starta programmet:
+- npm run start
 
-# installera dependencies
-$ npm install
-
-# sätt igång programmet:
-$ npm run start
-
-# har även deployat:
-$ http://ellos-test.surge.sh/
-
-
-
-
+## Finns även deployat här:
+- http://ellos-test.surge.sh/
