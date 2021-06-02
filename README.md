@@ -1,6 +1,6 @@
 # ellos test
 
-#### Daniel Malmgren de Oliveira
+#### Arbetsprov för ellos utfört av Daniel Malmgren de Oliveira
 
 ## Sätt upp programmet
 - gå till mappen i terminal / cmd / PowerShell
